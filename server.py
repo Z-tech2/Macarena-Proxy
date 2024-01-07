@@ -12,8 +12,6 @@ def handle_get():
         html = get(url).text
         return html
 
-if __name__ == '__main__':
-  app.run()
 
 if __name__ == "__main__":
     app.run(port=port)
