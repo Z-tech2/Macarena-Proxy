@@ -5,17 +5,15 @@ app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
 
-@app.route('/static/<path:path>')
-def serve_static(path):
-    return send_from_directory('static', path)
+@app.route('/handle_get', methods=['GET'])
+def handle_get():
+    if request.method == 'GET':
+        url = request.args['url']
+        html = get(url).text
+        return html
 
-@app.route('/')
-def home():
-   return render_template('index.html')
-
-@app.route('/<path:path>')
-def all_routes(path):
-    return redirect('/')
+if __name__ == '__main__':
+  app.run()
 
 if __name__ == "__main__":
     app.run(port=port)
