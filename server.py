@@ -1,5 +1,6 @@
 import os
 from flask import Flask, send_from_directory, render_template, redirect
+import requests
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ port = int(os.environ.get("PORT", 5000))
 def handle_get():
     if request.method == 'GET':
         url = request.args['url']
-        html = get(url).text
+        html = requests.get(url).text
         return html
 
 
